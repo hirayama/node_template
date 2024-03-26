@@ -1,0 +1,40 @@
+{
+  // 親フォルダまで探索するのをストップする
+  // https://eslint.org/docs/latest/use/configure/configuration-files#cascading-and-hierarchy
+  "root": true,
+  "env": {
+    "es2021": true,
+    // jest固有の組み込み変数を許可
+    "jest/globals": true,
+    // nodeの組み込み変数を許可
+    "node": true
+  },
+  "extends": ["airbnb-base", "prettier"],
+  "plugins": ["jest"],
+  "settings": {
+    // import文のパス解決にsrcディレクトリを追加
+    "import/resolver": {
+      "node": {
+        "paths": ["src"],
+        "moduleDirectory": ["node_modules", "src/"]
+      }
+    }
+  },
+  "overrides": [
+    {
+      // jsの書式に依存させないようjsonファイルに固定する
+      "files": [".eslintrc.json"],
+      "parserOptions": {
+        "sourceType": "script"
+      }
+    }
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    // log出力はloggerモジュールを使う
+    "no-console": "error"
+  }
+}
